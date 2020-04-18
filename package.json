@@ -1,0 +1,14 @@
+{
+  "name": "packagesf",
+  "version": "1.0.9",
+  "description": "module to create package.xml file for salesforce",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "csv-parser": "*"
+  },
+  "author": "Simone Martinello",
+  "license": "ISC"
+}
