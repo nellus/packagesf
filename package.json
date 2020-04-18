@@ -3,12 +3,27 @@
   "version": "1.0.23",
   "description": "module to create package.xml file for salesforce",
   "main": "app.js",
+  "keywords": [
+    "salesforce",
+    "salesforce.com",
+    "package.xml"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nellus/packagesf"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nellus/packagesf/blob/master/LICENSE"
+    }
+  ],
   "scripts": {
     "test": ""
   },
   "dependencies": {
     "csv-parser": "*"
   },
-  "author": "Simone Martinello",
-  "license": "ISC"
+  "author": "Simone Martinello"
 }
