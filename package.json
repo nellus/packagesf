@@ -1,6 +1,6 @@
 {
   "name": "packagesf",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "module to create package.xml file for salesforce",
   "main": "app.js",
   "scripts": {

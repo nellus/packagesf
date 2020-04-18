@@ -31,7 +31,7 @@ exports.createPackage = () => {
 			filestr += '\t</types>\r\n';
 		});
 
-		filestr += '\r\n</Package>';
+		filestr += '</Package>';
 		console.log('filestr ' + filestr);
 		const data = new Uint8Array(Buffer.from(filestr));
 		fs.writeFile('package.xml', data, (err) => {
