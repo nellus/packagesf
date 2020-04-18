@@ -28,7 +28,7 @@ exports.createPackage = () => {
 			filestr += '\t<types>\r\n';
 			filestr += '\t\t<members>*</members>\r\n';
 			filestr += '\t\t<name>'+m.Metadata+'</name>\r\n';
-			filestr += '\t</types>';
+			filestr += '\t</types>\r\n';
 		});
 
 		filestr += '\r\n</Package>';
