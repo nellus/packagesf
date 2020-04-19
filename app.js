@@ -2,7 +2,8 @@ exports.createPackage = () => {
 	
 	const fs = require('fs');
 	const csv = require('csv-parser');
-	const readline = require("readline");
+	const readline = require('readline');
+	const chalk = require('chalk');
 
 	let version = '47.0';
 	const rl = readline.createInterface({
@@ -10,25 +11,25 @@ exports.createPackage = () => {
 			output: process.stdout
 	});
 
-	rl.question("API Salesforce Version ? ", function(name) {
+	rl.question(chalk.yellow("API Salesforce Version ? "), function(name) {
 		version = name.includes('.0') ? name : name + '.0';
 		rl.close();
 	});
 
 	rl.on("close", function() {
 		//process.exit(0);
-		console.log('Start reading csv file');
+		console.log(chalk.yellow('Start reading csv file'));
 
 		let metadatatypes = [];
 		fs.createReadStream('data.csv')
 		.pipe(csv())
 		.on('data', (row) => {
-			console.log(row);
+			//console.log(row);
 			metadatatypes.push(row);
 		})
 		.on('end', () => {
-			console.log('CSV file successfully processed');
-			console.log('Writing package.xml for SF');
+			console.log(chalk.green('CSV file successfully processed'));
+			console.log(chalk.yellow('Writing package.xml for SF'));
 			fs.open('package.xml', 'w', (err, fd) => {      
 				writeMyData(metadatatypes, version);
 			});
@@ -38,7 +39,6 @@ exports.createPackage = () => {
 	function writeMyData(metadata, versionPkg){
 		let filestr = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\r\n';
 		filestr += '<Package xmlns="http://soap.sforce.com/2006/04/metadata">\r\n';
-		console.log('metadata ' , metadata);
 		metadata.forEach(m => {
 			filestr += '\t<types>\r\n';
 			filestr += '\t\t<members>*</members>\r\n';
@@ -50,8 +50,11 @@ exports.createPackage = () => {
 		filestr += '</Package>';
 		const data = new Uint8Array(Buffer.from(filestr));
 		fs.writeFile('package.xml', data, (err) => {
-			if (err) throw err;
-			console.log('The file has been saved!');
+			if (err){
+				console.log(chalk.red('Error'));
+				throw err;
+			}
+			console.log(chalk.green('The file has been saved!'));
 		});
 	}
 }
